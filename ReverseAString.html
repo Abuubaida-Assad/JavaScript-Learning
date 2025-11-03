@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function ReverseAString(inputString) {
+            if(typeof inputString !== 'string'){
+                throw new Error ("only strings are allowed")
+            }
+            let result ="";
+            for(let i = inputString.length -1; i >= 0; i--){
+                result = result + inputString[i];
+            }
+            return result;
+
+        }
+        function ReverseAString2(inputString) {
+            const splittedInput = inputString.split('')
+            const reversedArray = splittedInput.reverse('');
+            const result = reversedArray.join('');
+            return result;
+        }
+        console.log(ReverseAString("Assad"));
+        console.log(ReverseAString("Software development"));
+        // console.log(ReverseAString("123456"));
+        console.log(ReverseAString2("Assad"));
+        console.log(ReverseAString2("software development"));
+
+    </script>
+    
+</body>
+</html>
