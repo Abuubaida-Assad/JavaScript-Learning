@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- . problem
+    . write a function that calculate factorial of a given number 
+    .input : a number , positive integer >0, 1 ,4 ... 
+    return : factorial of that number 
+    . factorial multiplication of all positive integers from 1 to given number  -->
+    <script>
+       function calculateFactorial(inputNumber) {
+
+    if(inputNumber < 0) {
+        throw new Error("inputNumber should be greater than or equal to zero");
+    }
+    let result = 1;
+    for(let i = 1; i <= inputNumber; i++) {
+
+      
+        result *= i
+       
+        
+    }
+
+    return result;
+}
+function calculateFactorialUsingRecursion(inputNumber) {
+    if(inputNumber< 0) {
+        throw new error ("inputNumber should be greater than or equal to zero");
+        
+    }
+    if(inputNumber ===0 || inputNumber ===1) {
+        return 1;
+    }
+        return inputNumber * calculateFactorialUsingRecursion(inputNumber - 1);
+}
+console.log(calculateFactorial(5));
+console.log(calculateFactorial(4));
+console.log(calculateFactorial(10));
+console.log(calculateFactorial(0));
+console.log(calculateFactorial(1));
+
+console.log("calculateFactorialUsingRecursion");
+console.log(calculateFactorialUsingRecursion(5));
+console.log(calculateFactorialUsingRecursion(4));
+console.log(calculateFactorialUsingRecursion(10));
+console.log(calculateFactorialUsingRecursion(0));
+console.log(calculateFactorialUsingRecursion(1));
+    </script>
+    
+</body>
+</html>
