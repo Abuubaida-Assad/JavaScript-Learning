@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- .write a function that tell if provided year is a leap year or not
+    .input: a number positive integer 2000, 2025,2013;
+    .return :true if leap year,false if not leap year -->
+    <script>
+        function isLeapYear(year){
+            if (year % 4 === 0)
+            return true;
+            else {
+                return false;
+            }
+        }
+        console.log(isLeapYear(2023));
+        console.log(isLeapYear(2000));
+        console.log(isLeapYear(2026));
+
+
+        function isLeapYear2(year){
+            return(year % 4 === 0)
+        }
+        console.log(isLeapYear2(2023));
+        console.log(isLeapYear2(2000));
+        console.log(isLeapYear2(2026));
+
+    </script>
+</body>
+</html>
