@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- .write a function that calculates and prints the sum of digits
+     of the digits of a given number
+     . input : a number , positive integer 12, 34 123, 1234
+     . example 12: 1+2=3 -->
+
+    <script>
+        function calculateSumOfDigits(inputNumber){
+            if (inputNumber < 1) {
+            throw new Error ("input number must be in positive number")
+            }
+            const inputNumberAsString = inputNumber.toString();
+            const splittedInputString = inputNumberAsString.split('');
+            let sumOfDigits = 0;
+            splittedInputString.forEach(num=> {
+                sumOfDigits = sumOfDigits + parseInt(num);
+
+            })
+            return sumOfDigits;
+        }
+        console.log(calculateSumOfDigits(12));
+         console.log(calculateSumOfDigits(15));
+          console.log(calculateSumOfDigits(25));
+           console.log(calculateSumOfDigits(9985));
+    </script>
+</body>
+</html>
