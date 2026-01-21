@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HTML CSS Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+.dashboard {
+    padding: 20px;
+}
+
+.top, .bottom {
+    display: grid;
+    gap: 20px;
+}
+
+.top {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+}
+
+.bottom {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* BAR CHART */
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    height: 150px;
+    gap: 10px;
+}
+
+.bar {
+    width: 25%;
+    background: #4caf50;
+}
+
+/* LINE GRAPH */
+.line-chart {
+    position: relative;
+    height: 150px;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+.line {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-top: 2px solid #2196f3;
+    transform: skewY(-15deg);
+}
+
+/* MULTI LINE GRAPH */
+.multi-line {
+    position: relative;
+    height: 150px;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+.multi-line .line1 {
+    position: absolute;
+    width: 100%;
+    border-top: 2px solid red;
+    top: 40%;
+}
+
+.multi-line .line2 {
+    position: absolute;
+    width: 100%;
+    border-top: 2px solid blue;
+    top: 60%;
+}
+
+/* PIE CHART */
+.pie {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #ff9800 0% 40%,
+        #2196f3 40% 70%,
+        #4caf50 70% 100%
+    );
+    margin: auto;
+}
+
+/* HORIZONTAL BAR CHART */
+.hbar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hbar div {
+    height: 20px;
+    background: #9c27b0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- TOP ROW -->
+    <div class="top">
+
+        <div class="card">
+            <div class="title">Pie Chart</div>
+            <div class="pie"></div>
+        </div>
+
+        <div class="card">
+            <div class="title">Line Graph</div>
+            <div class="line-chart">
+                <div class="line"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="title">Bar Chart</div>
+            <div class="bar-chart">
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:80%"></div>
+                <div class="bar" style="height:50%"></div>
+                <div class="bar" style="height:70%"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom">
+
+        <div class="card">
+            <div class="title">Multi Line Graph</div>
+            <div class="multi-line">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="title">Horizontal Bar Graph</div>
+            <div class="hbar">
+                <div style="width:70%"></div>
+                <div style="width:50%"></div>
+                <div style="width:90%"></div>
+                <div style="width:40%"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
