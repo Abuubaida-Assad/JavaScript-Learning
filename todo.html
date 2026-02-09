@@ -1,177 +1,109 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Todo App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Todo</title>
 
-  <style>
-    body {
-      background: burlywood;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .todo-container {
-      background: white;
-      width: 380px;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
-    }
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #333;
-    }
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
 
-    .input-section {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
-    input[type="text"] {
-      flex: 1;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
+        input {
+            flex: 1;
+            padding: 12px;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            font-size: 16px;
+        }
 
-    button {
-      width: 45px;
-      background: #667eea;
-      color: white;
-      font-size: 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+        button {
+            padding: 12px 20px;
+            background: #444;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
+        button:hover {
+            background: #555;
+        }
 
-    li {
-      background: #f4f6fb;
-      padding: 10px;
-      margin-bottom: 8px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .completed {
-      text-decoration: line-through;
-      color: gray;
-    }
-
-    .id {
-      font-size: 12px;
-      color: #666;
-    }
-  </style>
+        .todo {
+            background: #222;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>Todo List</h1>
 
-  <div class="todo-container">
-    <h2>Todo List</h2>
-
-    <div class="input-section">
-      <input type="text" id="todoInput" placeholder="Enter a todo">
-      <button onclick="addTodo()">+</button>
+    <div class="input-area">
+        <input type="text" id="input" placeholder="Add todo...">
+        <button onclick="addTodo()">+</button>
     </div>
 
-    <ul id="todoList"></ul>
-  </div>
+    <div id="list"></div>
+    <div id="update"></div>
 
-  <script>
-    const todos = [
-      { id: 1, text: "Learn HTML", done: false },
-      { id: 2, text: "Learn CSS", done: false }
-    ];
+    <script>
+        let todos = [
+            { id: 1, text: "Learn JS" },
+            { id: 2, text: "LEARN SPANISH" }
+        ];
 
-    let nextId = 3;
+        let id = 3;
 
-    function showTodos() {
-      const list = document.getElementById("todoList");
-      list.innerHTML = "";
-
-      for (let i = 0; i < todos.length; i++) {
-        const li = document.createElement("li");
-
-        const leftDiv = document.createElement("div");
-        leftDiv.className = "left";
-
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = todos[i].done;
-        checkbox.onclick = toggleTodo(i);
-
-        const textSpan = document.createElement("span");
-        textSpan.innerHTML = todos[i].text;
-
-        if (todos[i].done === true) {
-          textSpan.className = "completed";
+        function showTodos() {
+            let html = "";
+            for (let todo of todos) {
+                html += `<div class="todo">${todo.text}</div>`;
+            }
+            document.getElementById("list").innerHTML = html ;
         }
 
-        leftDiv.appendChild(checkbox);
-        leftDiv.appendChild(textSpan);
+        function addTodo() {
+            let text = document.getElementById("input").value.trim();
+            if (text === "") return;
 
-        const idSpan = document.createElement("span");
-        idSpan.className = "id";
-        idSpan.innerHTML = "ID: " + todos[i].id;
+            todos.unshift({ id: id++, text: text });
+            document.getElementById("input").value = "";
+            showTodos();
+        }
 
-        li.appendChild(leftDiv);
-        li.appendChild(idSpan);
-
-        list.appendChild(li);
-      }
-    }
-
-    function toggleTodo(index) {
-      return function() {
-        todos[index].done = !todos[index].done;
         showTodos();
-      }
-    }
+        function updateTodo() {
+          
+        }
 
-    function addTodo() {
-      const input = document.getElementById("todoInput");
-      const value = input.value;
-
-      if (value === "") {
-        return;
-      }
-
-      const newTodo = {
-        id: nextId,
-        text: value,
-        done: false
-      };
-
-      todos.push(newTodo);
-      nextId = nextId + 1;
-
-      input.value = "";
-      showTodos();
-    }
-
-    showTodos();
-  </script>
-
+    </script>
 </body>
 </html>
