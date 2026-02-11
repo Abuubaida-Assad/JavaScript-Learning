@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Todo</title>
 
     <style>
@@ -13,7 +12,7 @@
         }
 
         body {
-            background: #000;
+            background: #401f1f;
             color: #fff;
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -59,8 +58,12 @@
             padding: 15px;
             margin-bottom: 10px;
             border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-           .delete-btn {
+
+        .delete-btn {
             background: red;
             padding: 6px 10px;
             font-size: 14px;
@@ -80,49 +83,61 @@
         <button onclick="addTodo()">+</button>
     </div>
 
-    <!-- <div id="list"></div>
-    <div id="update"></div> -->
+    <div id="list"></div>
 
-    <script>
-        let todos = [
-            { id: 1, text: "Learn JS" },
-            { id: 2, text: "LEARN SPANISH" }
-        ];
+  <script>
+    var todos = [
+        { id: 1, text: "todo-1" },
+        { id: 2, text: "todo-2" }
+    ];
 
-        let id = 3;
+    function showTodos() {
+        var html = "";
 
-        function showTodos() {
-            var html = todos.map(function(todo) {
-                return `
-                    <div class="todo">
-                        <span>${todo.text}</span>
-                        <button class="delete-btn" onclick="deleteTodo(${todo.id})">
-                            Delete
-                        </button>
-                    </div>
-                `;
-            });}
-
-        function addTodo() {
-            let text = document.getElementById("input").value.trim();
-            if (text === "") return;
-
-            todos.push({ id: id++, text: text });
-            document.getElementById("input").value = "";
-            showTodos();
+        for (var i = 0; i < todos.length; i++) {
+            html += `
+                <div class="todo">
+                    <span>${todos[i].text}</span>
+                    <button class="delete-btn" onclick="deleteTodo(${todos[i].id})">
+                        Delete
+                    </button>
+                </div>
+            `;
         }
 
-        showTodos();
-         function deleteTodo(todoId) {
-            todos = todos.filter(function(todo) {
-                return todo.id !== todoId;
-            });
+        document.getElementById("list").innerHTML = html;
+    }
 
-            showTodos();
-        }
+    function addTodo() {
+        var text = document.getElementById("input").value.trim();
+        if (text === "") return;
 
         
+        var newId = 1;
 
-    </script>
+        for (var i = 0; i < todos.length; i++) {
+            if (todos[i].id >= newId) {
+                newId = todos[i].id + 1;
+            }
+        }
+
+        todos.push({ id: newId, text: text });
+
+        document.getElementById("input").value = "";
+        showTodos();
+    }
+
+    function deleteTodo(todoId) {
+    todos = todos.filter(function(todo) {
+        return todo.id !== todoId;
+    });
+
+    showTodos();
+}
+
+    showTodos();
+</script>
 </body>
 </html>
+
+
