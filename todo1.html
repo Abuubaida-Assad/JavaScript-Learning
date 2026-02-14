@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -136,8 +136,186 @@
 }
 
     showTodos();
-</script>
+    
+ </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Todo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #401f1f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #444;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .todo {
+            background: #222;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .delete-btn {
+            background: red;
+        }
+
+        .delete-btn:hover {
+            background: darkred;
+        }
+
+        .edit-btn {
+            background: orange;
+        }
+
+        .edit-btn:hover {
+            background: darkorange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Todo List</h1>
+
+    <div class="input-area">
+        <input type="text" id="input" placeholder="Add todo...">
+        <button onclick="addTodo()">Add</button>
+    </div>
+
+    <div id="list"></div>
+
+    <script>
+        var todos = [
+            { id: 1, text: "todo-1" },
+            { id: 2, text: "todo-2" }
+        ];
+
+        function showTodos() {
+            var html = "";
+
+            for (var i = 0; i < todos.length; i++) {
+                html += `
+                    <div class="todo">
+                        <span>${todos[i].text}</span>
+                        <div class="btn-group">
+                            <button class="edit-btn" onclick="editTodo(${todos[i].id})">
+                                Edit
+                            </button>
+                            <button class="delete-btn" onclick="deleteTodo(${todos[i].id})">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.getElementById("list").innerHTML = html;
+        }
+
+        function addTodo() {
+            var text = document.getElementById("input").value.trim();
+            if (text === "") return;
+
+            var newId = 1;
+
+            for (var i = 0; i < todos.length; i++) {
+                if (todos[i].id >= newId) {
+                    newId = todos[i].id + 1;
+                }
+            }
+
+            todos.push({ id: newId, text: text });
+
+            document.getElementById("input").value = "";
+            showTodos();
+        }
+
+        function deleteTodo(todoId) {
+            todos = todos.filter(function(todo) {
+                return todo.id !== todoId;
+            });
+
+            showTodos();
+        }
+
+        function editTodo(todoId) {
+            for (var i = 0; i < todos.length; i++) {
+                if (todos[i].id === todoId) {
+
+                    var updatedText = prompt("Edit your todo:", todos[i].text);
+
+                    if (updatedText !== null && updatedText.trim() !== "") {
+                        todos[i].text = updatedText.trim();
+                    }
+
+                    break;
+                }
+            }
+
+            showTodos();
+        }
+
+        showTodos();
+    </script>
+
 </body>
 </html>
+
 
 
