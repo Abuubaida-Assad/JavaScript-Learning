@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+
+        }
+
+        body{
+            background-color: lightseagreen;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        #container{
+            height: 400px;
+            width: 350px;
+            border-radius: 10px;
+            position: relative;
+            background-color: white;
+            overflow: hidden;
+
+
+        }
+        #container img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+      #container i {
+    color: white;
+    font-size: 75px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform ease 0.5s;
+}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="https://w0.peakpx.com/wallpaper/674/274/HD-wallpaper-ms-dhoni-hitting-six-ms-dhoni-hitting-six-blue-jersey-indian-mahi-cricketer.jpg" alt="MS Dhoni">
+
+        <i class="ri-heart-3-fill"></i>
+    </div>
+    <script>
+        let con = document.querySelector("#container")
+        let love = document.querySelector("i")
+        con.addEventListener("dblclick", function() {
+            love.style.transform = "translate(-50%,-50%) scale(1)";
+            love.style.opacity=0.8
+        setTimeout(function () {
+            love.style.opacity=0;
+
+        },1000);
+          setTimeout(function () {
+            love.style.transform="translate(-50%, -50%) scale(0)";
+
+        },2000);
+        })
+
+    </script>
+</body>
+</html>

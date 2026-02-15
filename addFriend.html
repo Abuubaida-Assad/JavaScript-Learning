@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Card</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #111;
+        }
+
+        #card {
+            width: 300px;
+            background-color: #222;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        #card h1 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        #card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        #card h2 {
+            color: gray;
+            margin-bottom: 20px;
+        }
+
+        #card button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #00bcd4;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #card button:hover {
+            background-color: #0097a7;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="card">
+        <h1>Tate</h1>
+        <img src="https://phantom-marca.unidadeditorial.es/99ef9cb91eb68423fb9aa7b7bb0b8881/resize/1320/f/jpg/assets/multimedia/imagenes/2023/01/24/16745676069378.jpg" alt="">
+        <h2>Stranger</h2>
+        <button id="add">Add Friend</button>
+    </div>
+
+    <script>
+        const iStatus = document.querySelector("h2")
+        const add = document.querySelector("#add")
+        let check = 0;
+     add.addEventListener("click",function(){
+         if (check === 0) {
+            iStatus.innerHTML = "Friends"
+            iStatus.style.color = "green"
+            add.innerHTML = "Remove Friend"
+            check = 1
+        } else {
+            iStatus.innerHTML = "Stranger"
+            iStatus.style.color = "gray"
+            add.innerHTML = "Add Friend"
+            check = 0
+        }
+     })
+    
+    </script>
+
+
+</body>
+
+</html>
+
