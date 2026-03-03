@@ -126,10 +126,7 @@
           return;
         }
 
-        //[0,1,2]
-        //[first, second]
-
-        //edit case
+        
         if (isEditModeOn) {
           for (let i = 0; i < todos.length; i++) {
             if (todos[i].id === todoBeingEdited) {
@@ -144,7 +141,7 @@
           AddButton.innerText = "Add";
           input.value = "";
         } else {
-          //add case
+        
           todos.push({ id: todos.length + 1, title: inputValue });
           input.value = "";
         }
