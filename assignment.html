@@ -1,116 +1,74 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Login</title>
-    <style>
-        h1 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        form {
-             /* display: flex; 
-            justify-content: center;
-            align-items: center; */
-            gap: 10px;
-            margin-top: 20px;
-        }
-        input {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: black;
-            padding: 5px;
-            
-            
-        }
-        button {
-            color: black;
-            padding: 5px 10px;
-        }
-        p {
-            text-align: center;
-            color: green;
-            
-        }
-        .login{
-               display: flex; 
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-
-    <h1>Log In</h1>
-
-    
-
-    <form id="form">
-    <div class="log in">
+    <h1 class="text-center text-2xl font-bold mt-10">Sign up</h1>
+    <form id="form" class="flex justify-center ">
+        <div class="flex flex-col gap-3 mt-6">
+            <div class="">
+                <label for="Name">Name</label><br>
+                <input id="name" type="text" placeholder="Enter your name" class="border p-2 w-56 rounded">
+            </div>
             <div>
-            <label for="">Name</label>
-            <input class="" id="name" type="text" placeholder="Enter your name" required>
-
-        </div> <br>
-        <div>
-            <label>Email</label>
-            <input id="email" type="email" placeholder="Enter email" required>
-        </div> <br>
-        <div>
-            <label for="">Password</label>
-            <input id="password" type="password" placeholder="Enter password" required>
+                <label for="email">Email</label><br>
+                <input id="email" type="email" placeholder="Enter email" class="border p-2 w-56 rounded">
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input id="password" type="password" placeholder="Enter password" class="border p-2 w-56 rounded">
+            </div>
+            <div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Sign up</button>
+            </div>
         </div>
-
-        <div>
-            <button id="signup" type="submit">Sign Up</button>
-        </div>
-
-    </div>
-        
     </form>
-
-
-
-    <p id="message"></p>
-     <p id="messages"></p>
+    <p id="message" class="text-center text-green-600 mt-4"></p>
+    <p id="error" class="text-center text-red-600"></p>
 
     <script>
-
-        let signUpData = [
-            { id: 1, title: "Name" },
-            { id: 2, title: "Email" },
-            { id: 3, title: "Password" }
+        let users =[
+            {id:1,name:"jack",email:"jack@mail.com"},
+            {id:2,name:"max",email:'max@gmail.com'}
         ];
 
-        document.getElementById("form").addEventListener("submit", function(event) {
-            event.preventDefault();
+        document.getElementById("form").addEventListener("submit",function(event){
+        event.preventDefault();
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        if(name===""|| email==="" || password===""){
+        document.getElementById("error").innerText="All Fields are required";
+        document.getElementById("message").innerHTML="";
+        return;
+        }
 
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
+        for(let i=0;i<users.length;i++){
+            if(users[i].email===email){
+             document.getElementById("error").innerText="email already exist"
+             document.getElementById("message").innerText=""
+             return;
+            }
+        }
 
-            document.getElementById("message").innerText = "Account is created successfully!";
-           
-              
+
+        users.push({
+        id:users.length+1,
+        name:name,
+        email:email
         });
 
-         if (name ==="" || email ==="" || password === "") {
-            
-            document.getElementById("messages").innerText = "Account already exist";
-            return;
-           }
+        document.getElementById("message").innerText="Account is created successfully";
+        document.getElementById("error").innerText="";
+        document.getElementById("form").reset();
+        console.log(users);
 
-
-        
-      
-
+        }
+    );
     </script>
-
 </body>
 </html>
