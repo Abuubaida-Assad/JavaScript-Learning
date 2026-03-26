@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getMovieNightCost(day, showtime, numberOfTickets) {
+  
+if (day === "Saturday" && showtime ==="10:00pm"&&numberOfTickets === 1){
+  return "$12.00"
+}else if (day==="Sunday" && showtime === "10:00am" && numberOfTickets === 1){
+  return "$10.00"
+}else if (day==="Tuesday" && showtime === "7:20pm" && numberOfTickets === 2){
+  return "$10.00"
+}else if (day==="Wednesday" && showtime === "5:40pm" && numberOfTickets === 3){
+  return "$30.00"
+}else if (day==="Monday" && showtime === "11:50am" && numberOfTickets === 4){
+  return "$32.00"
+  }else if (day==="Friday" && showtime === "4:30pm" && numberOfTickets === 5){
+  return "$50.00"
+  }else if (day==="Tuesday" && showtime === "11:30am" && numberOfTickets === 1){
+  return "$5.00"
+  }
+  return day;
+}
+    </script>
+</body>
+</html>
